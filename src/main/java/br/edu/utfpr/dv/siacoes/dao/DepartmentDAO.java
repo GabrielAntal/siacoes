@@ -14,6 +14,8 @@ import br.edu.utfpr.dv.siacoes.model.Department;
 
 public class DepartmentDAO {
 
+	private static List<Department> list;
+
 	public Department findById(int id) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -35,6 +37,8 @@ public class DepartmentDAO {
 			}else{
 				return null;
 			}
+
+
 		}finally{
 			if((rs != null) && !rs.isClosed())
 				rs.close();
@@ -58,7 +62,7 @@ public class DepartmentDAO {
 					"FROM department INNER JOIN campus ON campus.idCampus=department.idCampus " + 
 					(onlyActive ? " WHERE department.active=1" : "") + " ORDER BY department.name");
 			
-			List<Department> list = new ArrayList<Department>();
+			list = new ArrayList<Department>();
 			
 			while(rs.next()){
 				list.add(this.loadObject(rs));
@@ -88,7 +92,7 @@ public class DepartmentDAO {
 					"FROM department INNER JOIN campus ON campus.idCampus=department.idCampus " +
 					"WHERE department.idCampus=" + String.valueOf(idCampus) + (onlyActive ? " AND department.active=1" : "") + " ORDER BY department.name");
 			
-			List<Department> list = new ArrayList<Department>();
+			list = new ArrayList<Department>();
 			
 			while(rs.next()){
 				list.add(this.loadObject(rs));
