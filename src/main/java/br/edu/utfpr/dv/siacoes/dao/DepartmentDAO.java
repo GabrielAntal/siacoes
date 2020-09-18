@@ -12,23 +12,17 @@ import java.util.List;
 import br.edu.utfpr.dv.siacoes.log.UpdateEvent;
 import br.edu.utfpr.dv.siacoes.model.Department;
 
-/*A única alteração que encontrei que poderia ser feita seria em transformar as variáveis do tipo Connection, PreparedStatement e ResultSet em globais, pois como todos os métodos utilizam
-essa variáveis para a conexão com o banco, assim seria melhor para identificar se as variáveis estivessem fora dos métodos e evitaria repetição. Nesse caso o que poderia implicar bug ou erro
-seria a concorrência entre os métodos, porém pelo que verifiquei na utilização desses métodos, creio que dois ou mais métodos não serão utilizados simultaneamente. As demais declarações
-de variáveis, a classe estar separada em métodos só de passar o olho verificando seu nome e o código descrito nele, já dá para se ter uma noção do que se trata, onde as bibliotecas
-estão sendo usadas de maneira efetiva*/
 
-public class DepartmentDAO {
+
+public class DepartmentDAO extends Template{
 
 	private static List<Department> list;
-	Connection conn = null;
-	PreparedStatement stmt = null;
-	ResultSet rs = null;
 
-	public Department findById(int id) throws SQLException{
-		/*Connection conn = null;
+	@Override
+	 Department findByIdDepartment(int id) throws SQLException{
+		Connection conn = null;
 		PreparedStatement stmt = null;
-		ResultSet rs = null; */
+		ResultSet rs = null; 
 		
 		try{
 			conn = ConnectionDAO.getInstance().getConnection();
@@ -58,11 +52,12 @@ public class DepartmentDAO {
 		}
 	}
 	
-	public List<Department> listAll(boolean onlyActive) throws SQLException{
-		/*Connection conn = null;
+	@Override
+	 List<Department> listAllDepartment(boolean onlyActive) throws SQLException{
+		Connection conn = null;
 		Statement stmt = null;
-		ResultSet rs = null; */
-		
+		ResultSet rs = null; 
+	
 		try{
 			conn = ConnectionDAO.getInstance().getConnection();
 			stmt = conn.createStatement();
@@ -88,7 +83,8 @@ public class DepartmentDAO {
 		}
 	}
 	
-	public List<Department> listByCampus(int idCampus, boolean onlyActive) throws SQLException{
+	@Override
+	 List<Department> listByCampus(int idCampus, boolean onlyActive) throws SQLException{
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -118,11 +114,12 @@ public class DepartmentDAO {
 		}
 	}
 	
-	public int save(int idUser, Department department) throws SQLException{
+	@Override
+	 int saveDepartment(int idUser, Department department) throws SQLException{
 		boolean insert = (department.getIdDepartment() == 0);
-	/*	Connection conn = null;
+		Connection conn = null;
 		PreparedStatement stmt = null;
-		ResultSet rs = null; */
+		ResultSet rs = null; 
 		
 		try{
 			conn = ConnectionDAO.getInstance().getConnection();

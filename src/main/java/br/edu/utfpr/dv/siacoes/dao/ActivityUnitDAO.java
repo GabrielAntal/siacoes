@@ -11,21 +11,15 @@ import java.util.List;
 import br.edu.utfpr.dv.siacoes.log.UpdateEvent;
 import br.edu.utfpr.dv.siacoes.model.ActivityUnit;
 
-/*A única alteração que encontrei que poderia ser feita seria em transformar as variáveis do tipo Connection, PreparedStatement e ResultSet em globais, pois como todos os métodos utilizam
-essa variáveis para a conexão com o banco, assim seria melhor para identificar se as variáveis estivessem fora dos métodos e evitaria repetição. Nesse caso o que poderia implicar bug ou erro
-seria a concorrência entre os métodos, porém pelo que verifiquei na utilização desses métodos, creio que dois ou mais métodos não serão utilizados simultaneamente. As demais declarações
-de variáveis, a classe estar separada em métodos só de passar o olho verificando seu nome e o código descrito nele, já dá para se ter uma noção do que se trata, onde as bibliotecas
-estão sendo usadas de maneira efetiva*/
 
-public class ActivityUnitDAO {
-	Connection conn = null;
-	PreparedStatement stmt = null;
-	ResultSet rs = null;
 
-	public List<ActivityUnit> listAll() throws SQLException{
-		/*Connection conn = null;
+public class ActivityUnitDAO extends Template {
+
+	@Override
+	 List<ActivityUnit> listAllActivityUnit() throws SQLException{
+		Connection conn = null;
 		Statement stmt = null;
-		ResultSet rs = null;*/
+		ResultSet rs = null;
 		
 		try{
 			conn = ConnectionDAO.getInstance().getConnection();
@@ -50,10 +44,11 @@ public class ActivityUnitDAO {
 		}
 	}
 	
-	public ActivityUnit findById(int id) throws SQLException{
-		/*Connection conn = null;
+	@Override
+	 ActivityUnit findByIdActivityUnit(int id) throws SQLException{
+		Connection conn = null;
 		PreparedStatement stmt = null;
-		ResultSet rs = null;*/
+		ResultSet rs = null;
 		
 		try{
 			conn = ConnectionDAO.getInstance().getConnection();
@@ -78,11 +73,12 @@ public class ActivityUnitDAO {
 		}
 	}
 	
-	public int save(int idUser, ActivityUnit unit) throws SQLException{
+	@Override
+	 int saveActivityUnit(int idUser, ActivityUnit unit) throws SQLException{
 		boolean insert = (unit.getIdActivityUnit() == 0);
-		/*Connection conn = null;
+		Connection conn = null;
 		PreparedStatement stmt = null;
-		ResultSet rs = null;*/
+		ResultSet rs = null;
 		
 		try{
 			conn = ConnectionDAO.getInstance().getConnection();
