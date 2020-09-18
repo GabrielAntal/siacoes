@@ -21,4 +21,14 @@ public class Tests {
 	}
 
 
+	@Test
+	void CampusTests() {
+		Campus campus = new Campus();
+		
+		campus.setAddress("Cornelio-PR");
+		
+		String camp1 = campus.setAddress();
+		String camp2= "Cornelio-PR";
+		
+		assertEquals(camp2, camp1);
 }
